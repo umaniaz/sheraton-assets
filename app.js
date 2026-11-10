@@ -18,7 +18,7 @@ $('progressExport').onclick=()=>csv([['Room','Floor','Type','Status','Registered
 $('backup').onclick=()=>download(new Blob([JSON.stringify({records,status,seed,exportedAt:new Date().toISOString()})],{type:'application/json'}),'sheraton-backup.json');$('restoreFile').onchange=async e=>{try{let b=JSON.parse(await e.target.files[0].text());if(!Array.isArray(b.records))throw Error('Invalid backup');if(cloud){alert('Restore is disabled while connected to shared Firebase.');return}if(!confirm('Replace all local data with backup?'))return;records=b.records;status=b.status||{};seed=b.seed||seed;save();if(seed)localStorage.setItem('sar_seed',JSON.stringify(seed));renderSettings()}catch(err){alert(err.message)}};
 $('connect').onclick=async()=>{try{await connectCloud()}catch(e){alert('Connection failed: '+e.message)}};$('signOut').onclick=disconnectCloud}
 let fire=null,unsubs=[],role='';
-const firebaseConfig={apiKey:'AIzaSyDXuzCFfu-YAKjVW1lhErQCoV_W6tZmr90',authDomain:'sheraton-assets-register.firebaseapp.com',projectId:'sheraton-assets-register',storageBucket:'sheraton-assets-register.firebasestorage.app',messagingSenderId:'258387688474',appId:'1:258387688474:web:85ea26bbba6f25d80fa5a3'};
+const firebaseConfig={apiKey:'AIzaSyDXuzCFfu-YAKjVW1lhErQCoV_W6tZmr90',authDomain:'sheraton-assets-register.firebaseapp.com',projectId:'sheraton-assets-register',storageBucket:'sheraton-assets-register.firebasestorage.app',messagingSenderId:'258387688474',appId:'1:258387688474:web:44844ed7bf2c12a50fa5a3'};
 async function connectCloud(){
  const a=await import('https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js');
  const au=await import('https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js');
